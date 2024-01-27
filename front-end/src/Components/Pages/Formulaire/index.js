@@ -663,7 +663,7 @@ const Formulaire = () => {
             </Form.Item>
 
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <Button>Retour</Button>
+              <Button onClick={() => setCurrent(current - 1)}>Retour</Button>
               <Button type="primary" htmlType="submit">
                 Etape suivante
               </Button>
@@ -780,7 +780,7 @@ const Formulaire = () => {
               flexDirection: "column-reverse",
             }}
           >
-            <Button style={{ margin: "10px 0" }}>Retour</Button>
+            <Button onClick={() => setCurrent(current - 1)} style={{ margin: "10px 0" }}>Retour</Button>
             <Button type="primary" htmlType="submit">
               Confirmer
             </Button>
