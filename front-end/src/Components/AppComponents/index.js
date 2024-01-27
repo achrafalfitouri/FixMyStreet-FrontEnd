@@ -2,17 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   MenuOutlined,
- 
   MobileOutlined,
   PhoneFilled,
 } from "@ant-design/icons";
 import {
- 
   Divider,
-
   Typography,
   Layout,
- 
   Affix,
   Col,
   Row,
@@ -63,13 +59,15 @@ const AppComponents = () => {
   return (
     <Layout className="layout">
       <style>{`
-      
+    
  body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Helvetica, Arial, sans-serif';
-  
+  min-height: 100vh;
+  display:flex;
+  flex-direction:column;
   
  }
 
@@ -85,13 +83,14 @@ const AppComponents = () => {
   }
 
   .footer {
-    padding: 16px;
+    padding: 20px;
     background-color:#001529;
     text-align: center;
     position: sticky;
     bottom: 0;
     width: 100%;
     z-index: 1;
+    margin-top: auto;
     
     
   }

@@ -262,8 +262,8 @@ const HomePage = () => {
               bottom: 9, // Ajustez la distance par rapport au bas de la carte selon vos besoins
               right: 40,
             }}
-            href="https://ant.design"
-            target="_blank"
+            href="/formulaire"
+            target="_self"
           >
             Soumettre
           </Button>
