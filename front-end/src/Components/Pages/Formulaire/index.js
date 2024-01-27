@@ -187,6 +187,20 @@ const Formulaire = () => {
   function Formu({ onFinish, initialValues }) {
     //upload
     const [fileList, setFileList] = useState([]);
+
+
+
+
+    useEffect(() => {
+      // Fetch and set the fileList from localStorage when the component mounts
+      const storedFileList = JSON.parse(localStorage.getItem("formuFileList")) || [];
+      setFileList(storedFileList);
+    }, []);
+  
+    const saveFileListToLocalStorage = (fileList) => {
+      // Save the fileList to localStorage whenever it changes
+      localStorage.setItem("formuFileList", JSON.stringify(fileList));
+    };
     const allowedFormats = [
       "pdf",
       "jpeg",
@@ -212,6 +226,7 @@ const Formulaire = () => {
     const props = {
       name: "file",
       multiple: true,
+      fileList: fileList,
       action: "https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188",
       onChange(info) {
         const { status } = info.file;
@@ -237,6 +252,8 @@ const Formulaire = () => {
           return file;
         });
         setFileList(newFileList);
+         // Save updated fileList to localStorage
+      saveFileListToLocalStorage(newFileList);
       },
       customRequest({ file, onSuccess, onError }) {
         const isLt5M = file.size / 1024 / 1024 < 5;
