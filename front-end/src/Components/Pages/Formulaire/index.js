@@ -73,7 +73,7 @@ const Formulaire = () => {
       );
       const data = await response.json();
 
-      // Extract the list of countries from the data
+      
       const countryList = data.geonames.map((country) => ({
         code: country.countryCode,
         name: country.countryName,
@@ -87,7 +87,7 @@ const Formulaire = () => {
 
   const fetchCities = async () => {
     try {
-      // Fetch cities data (replace 'your_geonames_username' with your actual Geonames username)
+     
       const geonamesUsername = "achrafalfitouri";
       const response = await fetch(
         `http://api.geonames.org/searchJSON?country=MA&featureClass=P&username=${geonamesUsername}`
@@ -107,7 +107,7 @@ const Formulaire = () => {
         `http://api.geonames.org/searchJSON?country=MA&name=${cityName}&featureClass=P&username=${geonamesUsername}`
       );
       const data = await response.json();
-      console.log("API Response:", data); // Add this line for debugging
+      console.log("API Response:", data); 
 
       const region = data.geonames[0]?.adminName1 || "";
       setSelectedRegion(region);
@@ -117,16 +117,16 @@ const Formulaire = () => {
   };
 
   useEffect(() => {
-    // Fetch cities when the component mounts
+  
     fetchCities();
   }, []);
   useEffect(() => {
-    // Fetch cities when the component mounts
+   
     fetchCountries();
   }, []);
   const [form] = Form.useForm();
   useEffect(() => {
-    // Use useEffect to update form fields after selectedRegion is updated
+   
     form.setFieldsValue({
       ville: selectedCity,
       region: selectedRegion,
@@ -135,7 +135,6 @@ const Formulaire = () => {
   }, [form, selectedCity, selectedRegion]);
 
   const handleCityChange = (value) => {
-    // Update the selected city and fetch the corresponding region and neighborhood
     setSelectedCity(value);
     fetchRegionAndNeighborhoodForCity(value);
   };
@@ -192,13 +191,11 @@ const Formulaire = () => {
 
 
     useEffect(() => {
-      // Fetch and set the fileList from localStorage when the component mounts
       const storedFileList = JSON.parse(localStorage.getItem("formuFileList")) || [];
       setFileList(storedFileList);
     }, []);
   
     const saveFileListToLocalStorage = (fileList) => {
-      // Save the fileList to localStorage whenever it changes
       localStorage.setItem("formuFileList", JSON.stringify(fileList));
     };
     const allowedFormats = [
@@ -243,16 +240,13 @@ const Formulaire = () => {
         let newFileList = [...info.fileList];
         newFileList = newFileList.slice(-1);
 
-        // 2. Read from response and show file link
         newFileList = newFileList.map((file) => {
           if (file.response) {
-            // Component will show file.url as link
             file.url = file.response.url;
           }
           return file;
         });
         setFileList(newFileList);
-         // Save updated fileList to localStorage
       saveFileListToLocalStorage(newFileList);
       },
       customRequest({ file, onSuccess, onError }) {
@@ -692,7 +686,6 @@ const Formulaire = () => {
   }
 
   function Finish() {
-    // Assuming FormuDetails and FormuDetails1 are objects with the submitted data
 
     return (
       <div style={{ display: "flex", justifyContent: "center" }}>

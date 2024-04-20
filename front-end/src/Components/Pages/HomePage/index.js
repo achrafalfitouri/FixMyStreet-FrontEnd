@@ -36,7 +36,7 @@ const { Meta } = Card;
 const contentStyle = {
   height: "400px",
   width: "100%",
-  margin: "auto", // Center the box horizontally
+  margin: "auto", 
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
@@ -44,9 +44,9 @@ const contentStyle = {
   textAlign: "center",
   backgroundColor: "#3E4242",
   color: "white",
-  borderRadius: "10px", // Add rounded corners for a modern look
-  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.2)", // Enhanced box shadow
-  padding: "20px", // Add padding for content spacing
+  borderRadius: "10px", 
+  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.2)", 
+  padding: "20px", 
   position: "relative",
   alignContent: "center",
 };
@@ -100,7 +100,7 @@ const HomePage = () => {
               style={{
                 marginLeft: 550,
                 position: "absolute",
-                bottom: 9, // Ajustez la distance par rapport au bas de la carte selon vos besoins
+                bottom: 9, 
                 right: 16,
               }}
             >
@@ -259,7 +259,7 @@ const HomePage = () => {
             style={{
               marginLeft: 550,
               position: "absolute",
-              bottom: 9, // Ajustez la distance par rapport au bas de la carte selon vos besoins
+              bottom: 9,  
               right: 40,
             }}
             href="/formulaire"
@@ -286,7 +286,7 @@ const HomePage = () => {
             style={{
               marginLeft: 550,
               position: "absolute",
-              bottom: 9, // Ajustez la distance par rapport au bas de la carte selon vos besoins
+              bottom: 9, 
               right: 40,
             }}
             href="https://ant.design"
@@ -311,7 +311,7 @@ const HomePage = () => {
             style={{
               marginLeft: 550,
               position: "absolute",
-              bottom: 9, // Ajustez la distance par rapport au bas de la carte selon vos besoins
+              bottom: 9, 
               right: 40,
             }}
             href="https://ant.design"
