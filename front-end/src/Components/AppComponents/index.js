@@ -77,7 +77,8 @@ const AppComponents = () => {
     padding: 10px 16px;
     
    position : relative ;
-   
+   min-height: 100vh;
+
 
     
   }
@@ -92,7 +93,7 @@ const AppComponents = () => {
     z-index: 1;
     margin-top: auto;
     
-    
+
   }
 
   .footer.visible {
@@ -280,9 +281,9 @@ const AppComponents = () => {
 
           {/* Menu Items in the center */}
           <div className="header-menu">
-            <Link to="/home">Acceuil</Link>
+            <Link to="/">Acceuil</Link>
             <Link to="/about">A propos</Link>
-            <Link to="/reclamation">Reclamation</Link>
+            <Link to="/formulaire">Reclamation</Link>
 
             <Link to="/contact">Contact</Link>
           </div>
