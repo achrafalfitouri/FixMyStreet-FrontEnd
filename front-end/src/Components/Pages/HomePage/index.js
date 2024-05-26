@@ -296,7 +296,7 @@ const HomePage = () => {
           </Button>
         </Card>
       </div>
-      <div>
+      {/* <div>
         <Card
           style={contentStyle}
           title={<span style={{ color: "white" }}>Suivi de client</span>}
@@ -320,7 +320,7 @@ const HomePage = () => {
             Soumettre
           </Button>
         </Card>
-      </div>
+      </div> */}
     </Carousel>
     <Divider
       style={{

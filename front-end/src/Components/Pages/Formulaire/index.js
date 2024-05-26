@@ -26,6 +26,7 @@ import L from 'leaflet'; // Import Leaflet library
 import ReactDOMServer from 'react-dom/server'; // Import ReactDOMServer for rendering React components to HTML
 import EXIF from 'exif-js'; // Import exif-js
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const antIcon = (icon) => L.divIcon({
   html: ReactDOMServer.renderToString(
@@ -670,75 +671,65 @@ const Formulaire = () => {
         message.error("Veuillez capturer une image avec des informations de localisation avant de soumettre.");
       }
     };
-  return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
-      <div style={{ width: "100%", maxWidth: 600 }}>
-        <Form
-        image={imageFile}
-          initialValues={initialValues}
-          onFinish={handleSubmit}
-          layout="horizontal"
-          style={{ width: "100%" }}
-        >
-          <div style={{ marginBottom: '16px' }}>
-            <Form.Item
-              label="Capturez une image"
-              labelCol={{ span: 24 }}
-              style={{ marginBottom: '16px' }}
-            >
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div style={{ width: '100%', maxWidth: 800, padding: 24, boxShadow: '0 0 10px rgba(0,0,0,0.1)', borderRadius: 8 }}>
+          <h1 style={{ textAlign: 'center', marginBottom: 24 }}>Capture d'image</h1>
+          <h3 style={{  marginBottom: 24 }}>Assurez-vous que la localisation est activée</h3>
+  
+          <Form
+            name="formu2"
+            initialValues={initialValues}
+            onFinish={handleSubmit}
+            layout="vertical"
+          >
+            <Form.Item label="Capturez une image">
               <Upload
                 accept="image/*"
-                beforeUpload={() => false} // To prevent default behavior of Upload component
+                beforeUpload={() => false}
                 showUploadList={false}
-                onChange={(info) => {
-                  const file = info.file.originFileObj;
-                  if (file) {
-                    handleFileUpload(file);
-                  }
-                }}
+                onChange={handleFileUpload}
               >
-              
               </Upload>
-              <Button style={{ marginLeft: '10px' }} onClick={handleCameraCapture}>
+              <Button icon={<CameraOutlined/>} style={{ marginLeft: 10 }} onClick={handleCameraCapture}>
                 Prendre une photo
               </Button>
             </Form.Item>
-          </div>
-
-          {location && (
-            <MapContainer center={[location.latitude, location.longitude]} zoom={13} style={{ height: "400px", marginTop: "10px" }}>
-              <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              />
-              <Marker icon={antIcon(<CompassOutlined />)} position={[location.latitude, location.longitude]}>
-                <Popup>
-                  Latitude: {location.latitude}<br />
-                  Longitude: {location.longitude}
-                </Popup>
-              </Marker>
-            </MapContainer>
-          )}
-
-          <Form.Item>
-            <Button
-              type="primary"
-              htmlType="submit"
-              style={{ width: '100%' }}
-            >
-              Soumettre
-            </Button>
-          </Form.Item>
-        </Form>
+  
+            {location && (
+              <div style={{ marginBottom: 24 }}>
+                <h3>Emplacement Capturé:</h3>
+                <MapContainer center={[location.latitude, location.longitude]} zoom={13} style={{ height: '400px' }}>
+                  <TileLayer
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  />
+                  <Marker position={[location.latitude, location.longitude]}>
+                    <Popup>
+                      Latitude: {location.latitude}<br />
+                      Longitude: {location.longitude}
+                    </Popup>
+                  </Marker>
+                </MapContainer>
+              </div>
+            )}
+  
+            <Form.Item>
+              <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
+                Soumettre
+              </Button>
+            </Form.Item>
+          </Form>
+        </div>
       </div>
-    </div>
-  );
+    );
 }
 
 
 
 function Finish({  }) {
   const [reclamationId, setReclamationId] = useState(null);
+  const [showButtons, setShowButtons] = useState(true);
 
   const handleBack = () => {
     // Handle back button logic here
@@ -881,6 +872,7 @@ const quartierResponse = await axios.post('http://127.0.0.1:8000/api/quartiers',
       setReclamationId(reclamationResponse.data.id);
 
       message.success("Formulaire soumis avec succès!");
+      setShowButtons(false); 
     } catch (error) {
       console.error('Error submitting form data:', error.response || error);
       if (error.response) {
@@ -977,11 +969,17 @@ const quartierResponse = await axios.post('http://127.0.0.1:8000/api/quartiers',
             <h2>Merci de conserver ce numéro pour suivre votre réclamation.</h2>
           </div>
         )}
+         {showButtons && (
         <div style={{ display: "flex", justifyContent: "space-between", marginTop: "20px" }}>
-              <Button onClick={handleBack}>Retour</Button>
-          <Button type="primary"htmlType="submit" onClick={handleConfirm}>Confirmer</Button>
-        </div>
-
+              <Button onClick={handleBack} >Retour</Button>
+          <Button type="primary"htmlType="submit" onClick={handleConfirm} >Confirmer</Button>
+        </div>)}
+        {!showButtons && (
+          <div style={{  textAlign: "center" }}>
+        <Link to="/">
+          <Button type="primary">Revenir à l'accueil</Button>
+        </Link></div>
+      )}
        
       </div>
     </div>
