@@ -32,9 +32,10 @@ const antIcon = (icon) => L.divIcon({
   html: ReactDOMServer.renderToString(
     <icon.type {...icon.props} style={{ fontSize: '30px' }} />
   ),
-  iconSize: [30, 30], // Adjust the size as needed
-  className: 'leaflet-div-icon' // Ensure the icon has Leaflet's default icon class
+  iconSize: [30, 30],
+  className: 'leaflet-div-icon'
 });
+
 
 //upload
 const { TextArea } = Input;
@@ -704,7 +705,7 @@ const Formulaire = () => {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                   />
-                  <Marker position={[location.latitude, location.longitude]}>
+                  <Marker icon={antIcon(<CompassOutlined />)}position={[location.latitude, location.longitude]}>
                     <Popup>
                       Latitude: {location.latitude}<br />
                       Longitude: {location.longitude}
