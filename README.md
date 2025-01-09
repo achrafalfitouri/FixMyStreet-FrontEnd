@@ -40,7 +40,7 @@ A web-based system designed for managing urban complaints. This project utilizes
 
      ```bash
      # Clone the repository
-     git clone https://github.com/yourusername/FixMyStreet-FrontEnd.git
+     git clone https://github.com/achrafalfitouri/FixMyStreet-FrontEnd.git
      cd FixMyStreet-FrontEnd
 
      # Install project dependencies
