@@ -32,7 +32,7 @@ A web-based system designed for managing urban complaints. This project utilizes
 - **Node.js** (version 14 or higher)
 - **PHP** (version 7.4 or higher)
 - **Composer** (PHP dependency manager)
-- **MySQL Database** (or any other relational database of your choice)
+- **MySQL Database** 
 - **npm** (Node Package Manager)
 
 ### Frontend Setup :
